@@ -10,7 +10,7 @@ public:
             }
             else i++;
         }
-        return j == str.length() ? true : false;
+        return j == str.length();
     }
     
     string findLongestWord(string s, vector<string>& dictionary) {
