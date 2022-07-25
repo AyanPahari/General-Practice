@@ -15,10 +15,9 @@ public:
     
     string findLongestWord(string s, vector<string>& dictionary) {
         string res = "";
-        sort(dictionary.begin(), dictionary.end());
         for(auto str: dictionary){
             if(isValid(s, str)){
-                if(res.length() < str.length()) res = str;
+                if(res.length() < str.length() || (res.length() == str.length() && str < res)) res = str;
             }
         }
         return res;
