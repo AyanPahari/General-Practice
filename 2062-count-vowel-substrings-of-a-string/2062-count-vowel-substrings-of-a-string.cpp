@@ -1,17 +1,13 @@
 class Solution {
 public:
-    
-    bool isValid(char c){
-        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
-    }
-    
     int countVowelSubstrings(string word) {
         unordered_map<char, int> mp;
         int count = 0;
         for (int i = 0; i < word.length(); ++i) {
             mp.clear();
-            for (int j = i; j < word.length() && isValid(word[j]); ++j) {
-                mp[word[j]]++;
+            for (int j = i; j < word.length(); ++j) {
+                if(word[j] == 'a' || word[j] == 'e' || word[j] == 'i' || word[j] == 'o' || word[j] == 'u') mp[word[j]]++;
+                else break;
                 if(mp.size() == 5) count++;
             }
         }
