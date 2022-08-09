@@ -13,12 +13,8 @@ public:
         }
         int count = 0;
         for(int i=0;i<pref.size()-1;i++){
-            for(int j=i+1;j<pref.size();j++){
-                for(int k=j;k<pref.size()-1;k++){
-                    int a = pref[j] ^ pref[i];
-                    int b = pref[k + 1] ^ pref[j];
-                    if(a == b) count++;
-                }
+            for(int k=i+1;k<pref.size()-1;k++){
+                if(pref[k + 1] == pref[i]) count += k - i;
             }
         }
         return count;
