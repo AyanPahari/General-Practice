@@ -7,9 +7,6 @@ public:
             if(arr[i] < 0) arr[i] = arr[i] + k;
             mp[arr[i]]++;
         }
-        for(auto it:mp){
-            cout<<it.first<<" "<<it.second<<endl;
-        }
         if(mp[0] % 2 != 0) return false;
         if(k % 2 == 0 && mp[k / 2] % 2 != 0) return false;
         for(int i=0;i<arr.size();i++){
