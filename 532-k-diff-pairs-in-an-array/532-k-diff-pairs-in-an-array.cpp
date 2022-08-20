@@ -1,13 +1,16 @@
 class Solution {
 public:
     int findPairs(vector<int>& nums, int k) {
-        int count = 0, i = 0;
-        int n = nums.size();
-        sort(nums.begin(), nums.end());
-        while(i < n - 1){
-            if(binary_search(nums.begin() + i + 1, nums.end(), nums[i] + k)) count++;
-            while(nums[i] == nums[i + 1] && i != n - 2) i++;
-            i++;
+        unordered_map<int,int>mp;
+        for(int i=0;i<nums.size();i++) mp[nums[i]]++;
+        int count = 0;
+        for(auto it:mp){
+            if(k == 0){
+                if(it.second > 1) count++;
+            }
+            else{
+                if(mp.find(it.first + k) != mp.end()) count++;
+            }
         }
         return count;
     }
