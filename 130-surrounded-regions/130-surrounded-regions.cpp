@@ -1,19 +1,17 @@
 class Solution {
 public:
     
-    int vis[201][201];
     int row, col;
     int dx[4]={-1,0,1,0};
     int dy[4]={0,1,0,-1};
     
     bool isValid(int x, int y, vector<vector<char>>& grid){
         if(x < 0 || y < 0 || x >= row || y >= col) return false;
-        if(vis[x][y] == 1 || grid[x][y] == 'X' || grid[x][y] == '#') return false;
+        if(grid[x][y] == 'X' || grid[x][y] == '#') return false;
         return true;
     }
     
     void dfs(int x, int y, vector<vector<char>>& grid){
-        vis[x][y] = 1;
         grid[x][y] = '#';
         for(int i=0;i<4;i++){
             if(isValid(x + dx[i], y + dy[i], grid)) dfs(x + dx[i], y + dy[i], grid);
