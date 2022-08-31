@@ -1,21 +1,22 @@
 class Solution {
 public:
     
+    int n;
     int dp[201][201];
-    int solve(int r, int c, vector<vector<int>>& grid, int n){
-        if(r >= n || c < 0 || c >= n) return INT_MAX;
-        if(r == n - 1) return grid[r][c];
-        if(dp[r][c] != -1) return dp[r][c];
-        
+    int solve(int row, int col, vector<vector<int>>& grid){
+        if(row >= n || col < 0 || col >= n) return INT_MAX;
+        if(row == n - 1) return grid[row][col];
+        if(dp[row][col] != -1) return dp[row][col];
         int ans = INT_MAX;
-        for(int i=0;i<n;i++) if(i != c) ans = min(ans, solve(r + 1, i, grid, n));
-        return dp[r][c] = ans + grid[r][c];
+        for(int i=0;i<n;i++) if(i != col) ans = min(ans, solve(row + 1, i, grid));
+        return dp[row][col] = ans + grid[row][col];
     }
     
     int minFallingPathSum(vector<vector<int>>& grid) {
-        int n = grid.size(), res = INT_MAX;
+        n = grid.size();
+        int res = INT_MAX;
         memset(dp, -1, sizeof(dp));
-        for(int i=0;i<n;i++) res = min(res, solve(0, i, grid, n));
+        for(int i=0;i<n;i++) res = min(res, solve(0, i, grid));
         return res;
     }
 };
