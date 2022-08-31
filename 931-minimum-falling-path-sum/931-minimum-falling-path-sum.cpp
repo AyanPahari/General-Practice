@@ -15,8 +15,8 @@ public:
     int minFallingPathSum(vector<vector<int>>& matrix) {
         int n = matrix.size();
         int res = INT_MAX;
+        memset(dp, -1, sizeof(dp));
         for(int i=0;i<n;i++){
-            memset(dp, -1, sizeof(dp));
             res = min(res, solve(0, i, matrix, n));
         }
         return res;
